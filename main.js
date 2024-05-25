@@ -12,7 +12,7 @@ class Field {
         this.width = width;
         this.percentage = percentage;
         this._field = this.generateField();
-        this,currentX = 0;
+        this.currentX = 0;
         this.currentY = 0;
     }
 
@@ -22,16 +22,16 @@ class Field {
         })
     }
 
-    static generateField() {
+   generateField() {
         const field = new Array(this.height).fill(0).map(el => new Array(this.width).fill('░'));
         field[0][0] = '*';
-        let hatX = Math.floor(Math.random() * this,width);
+        let hatX = Math.floor(Math.random() * this.width);
         let hatY = Math.floor(Math.random() * this.height);
         field[hatY][hatX] = '^';
         let holeCount = Math.round((this.width * this.height) * this.percentage);
         while (holeCount > 0) {
-            let x = Math.floor(Math.random() * width);
-            let y = Math.floor(Math.random() * height);
+            let x = Math.floor(Math.random() * this.width);
+            let y = Math.floor(Math.random() * this.height);
             if (field[y][x] === fieldCharacter) {
                 field[y][x] = hole;
                 holeCount--;
@@ -42,39 +42,41 @@ class Field {
 
     move(direction) {
         switch (direction) {
-            case 'up':
+            case 'u':
                 this.currentY--;
                 break;
-            case 'down':
+            case 'd':
                 this.currentY++;
                 break;
-            case 'left':
+            case 'l':
                 this.currentX--;
                 break;
-            case 'right':
+            case 'r':
                 this.currentX++;
                 break;
             default:
                 console.log('Invalid move!');
         }
-    }
+    
 
-    if (this.currentX < 0 || this.currentY < 0 || this.currentX >= this.width || this.currentY >= this.height) {
-        console.log('Out of bounds instruction!');
-        return false;
-    }
-    const newPosition - this.field[this.currentY][this.currentX];
-    if (newPosition === '^') {
-        console.log('Congrats! You found your hat!');
+        if (this.currentX < 0 || this.currentY < 0 || this.currentX >= this.width || this.currentY >= this.height) {
+            console.log('Out of bounds instruction!');
+            return false;
+        }
+        const newPosition = this._field[this.currentY][this.currentX];
+        if (newPosition === '^') {
+            console.log('Congrats! You found your hat!');
+            return true;
+        }
+        else if (newPosition === 'O') {
+            console.log('Sorry, you fell into a hole!');
+            return false;
+        }
+
+        this._field[this.currentY][this.currentX] = '*';
         return true;
     }
-    else if (newPosition === 'O') {
-        console.log('Sorry, you fell into a hole!');
-        return false;
-    }
 
-    this.field[this.currentY][this.currentX] = '*';
-    return true;
 }
 
 function playGame() {
