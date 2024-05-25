@@ -28,4 +28,10 @@ This project is an interactive terminal game where the player has lost their hat
    - Use the arrow keys (up/down/left/right) to move the player character (`*`) within the field.
    - Avoid falling into holes (`O`) or moving outside the field boundaries.
 
+
+ 
+
+   <img width="200" alt="Screenshot6" src="https://github.com/mlshere/hat_game/assets/139168159/f0cf8dc2-076e-4b49-a4ee-a2aa5068e0a0">
+
+
 ## Enjoy the Game!
